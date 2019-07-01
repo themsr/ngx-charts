@@ -3842,7 +3842,7 @@ var BarLabelComponent = /** @class */ (function () {
                 this.y = this.y - this.verticalPadding;
                 this.textAnchor = 'start';
             }
-            this.transform = "rotate(-45, " + this.x + " , " + this.y + ")";
+            this.transform = "rotate(0, " + this.x + " , " + this.y + ")";
         }
     };
     __decorate([
