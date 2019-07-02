@@ -9436,6 +9436,7 @@ var BarLabelComponent = /** @class */ (function () {
         this.dimensionsChanged = new EventEmitter();
         this.horizontalPadding = 2;
         this.verticalPadding = 5;
+        this.rotationAngle = 0;
         this.element = element.nativeElement;
     }
     BarLabelComponent.prototype.ngOnChanges = function (changes) {
@@ -9456,6 +9457,8 @@ var BarLabelComponent = /** @class */ (function () {
         else {
             this.formatedValue = formatLabel(this.value);
         }
+        var dimension = this.getSize();
+        console.log(dimension);
         if (this.orientation === 'horizontal') {
             this.x = this.barX + this.barWidth;
             if (this.value < 0) {
@@ -9469,7 +9472,14 @@ var BarLabelComponent = /** @class */ (function () {
             this.y = this.barY + this.barHeight / 2;
         }
         else {
-            this.x = this.barX + this.barWidth / 2;
+            if (dimension.width > this.barWidth) {
+                this.x = this.barX + this.barWidth / 2;
+                this.rotationAngle = -45;
+            }
+            else {
+                this.x = this.barX + (this.barWidth - dimension.width) / 2;
+                this.rotationAngle = 0;
+            }
             this.y = this.barY + this.barHeight;
             if (this.value < 0) {
                 this.y = this.y + this.verticalPadding;
@@ -9479,7 +9489,7 @@ var BarLabelComponent = /** @class */ (function () {
                 this.y = this.y - this.verticalPadding;
                 this.textAnchor = 'start';
             }
-            this.transform = "rotate(0, " + this.x + " , " + this.y + ")";
+            this.transform = "rotate(" + this.rotationAngle + ", " + this.x + " , " + this.y + ")";
         }
     };
     var _a, _b;
