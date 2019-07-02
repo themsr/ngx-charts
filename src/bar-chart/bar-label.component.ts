@@ -74,8 +74,8 @@ import { formatLabel } from '../common/label.helper';
       } else {
         this.formatedValue = formatLabel(this.value);
       }
+
       let dimension = this.getSize();
-      console.log(dimension);
 
       if (this.orientation === 'horizontal') {
           this.x = this.barX + this.barWidth;

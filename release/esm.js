@@ -9458,7 +9458,6 @@ var BarLabelComponent = /** @class */ (function () {
             this.formatedValue = formatLabel(this.value);
         }
         var dimension = this.getSize();
-        console.log(dimension);
         if (this.orientation === 'horizontal') {
             this.x = this.barX + this.barWidth;
             if (this.value < 0) {

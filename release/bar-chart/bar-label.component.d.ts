@@ -16,6 +16,7 @@ export declare class BarLabelComponent implements OnChanges {
     formatedValue: string;
     transform: string;
     textAnchor: string;
+    rotationAngle: number;
     constructor(element: ElementRef);
     ngOnChanges(changes: SimpleChanges): void;
     getSize(): any;

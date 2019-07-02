@@ -3796,6 +3796,7 @@ var BarLabelComponent = /** @class */ (function () {
         this.dimensionsChanged = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
         this.horizontalPadding = 2;
         this.verticalPadding = 5;
+        this.rotationAngle = 0;
         this.element = element.nativeElement;
     }
     BarLabelComponent.prototype.ngOnChanges = function (changes) {
@@ -3816,9 +3817,10 @@ var BarLabelComponent = /** @class */ (function () {
         else {
             this.formatedValue = Object(__WEBPACK_IMPORTED_MODULE_1__common_label_helper__["a" /* formatLabel */])(this.value);
         }
+        var dimension = this.getSize();
         if (this.orientation === 'horizontal') {
             this.x = this.barX + this.barWidth;
-            // if the value is negative then it's on the left of the x0. 
+            // if the value is negative then it's on the left of the x0.
             // we need to put the data label in front of the bar
             if (this.value < 0) {
                 this.x = this.x - this.horizontalPadding;
@@ -3831,8 +3833,15 @@ var BarLabelComponent = /** @class */ (function () {
             this.y = this.barY + this.barHeight / 2;
         }
         else {
-            // orientation must be "vertical"      
-            this.x = this.barX + this.barWidth / 2;
+            // orientation must be "vertical"
+            if (dimension.width > this.barWidth) {
+                this.x = this.barX + this.barWidth / 2;
+                this.rotationAngle = -45;
+            }
+            else {
+                this.x = this.barX + (this.barWidth - dimension.width) / 2;
+                this.rotationAngle = 0;
+            }
             this.y = this.barY + this.barHeight;
             if (this.value < 0) {
                 this.y = this.y + this.verticalPadding;
@@ -3842,7 +3851,7 @@ var BarLabelComponent = /** @class */ (function () {
                 this.y = this.y - this.verticalPadding;
                 this.textAnchor = 'start';
             }
-            this.transform = "rotate(0, " + this.x + " , " + this.y + ")";
+            this.transform = "rotate(" + this.rotationAngle + ", " + this.x + " , " + this.y + ")";
         }
     };
     __decorate([
