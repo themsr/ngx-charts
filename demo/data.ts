@@ -4,7 +4,7 @@ import { SingleSeries, MultiSeries, BubbleChartMultiSeries, Series, TreeMapData 
 export const single: SingleSeries = [
   {
     name: 'Germany',
-    value: 40632,
+    value: -40000,
     extra: {
       code: 'de'
     }
@@ -32,7 +32,7 @@ export const single: SingleSeries = [
   },
   {
     name: 'Spain',
-    value: 33000,
+    value: -33000,
     extra: {
       code: 'es'
     }

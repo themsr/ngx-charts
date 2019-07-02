@@ -44,7 +44,7 @@ import { formatLabel } from '../common/label.helper';
     x: number;
     y: number;
     horizontalPadding: number = 2;
-    verticalPadding: number = 5;
+    verticalPadding: number = 7;
     formatedValue: string;
     transform: string;
     textAnchor: string;
@@ -103,11 +103,12 @@ import { formatLabel } from '../common/label.helper';
 
         if (this.value < 0) {
           this.y = this.y + this.verticalPadding;
-          this.textAnchor = 'end';
+          // this.textAnchor = 'end';
         } else {
           this.y = this.y - this.verticalPadding;
           this.textAnchor = 'start';
         }
+        this.textAnchor = 'start';
         this.transform = `rotate(${this.rotationAngle}, ${ this.x } , ${ this.y })`;
       }
 

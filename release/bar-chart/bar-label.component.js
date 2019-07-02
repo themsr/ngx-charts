@@ -13,7 +13,7 @@ var BarLabelComponent = /** @class */ (function () {
     function BarLabelComponent(element) {
         this.dimensionsChanged = new EventEmitter();
         this.horizontalPadding = 2;
-        this.verticalPadding = 5;
+        this.verticalPadding = 7;
         this.rotationAngle = 0;
         this.element = element.nativeElement;
     }
@@ -63,12 +63,13 @@ var BarLabelComponent = /** @class */ (function () {
             this.y = this.barY + this.barHeight;
             if (this.value < 0) {
                 this.y = this.y + this.verticalPadding;
-                this.textAnchor = 'end';
+                // this.textAnchor = 'end';
             }
             else {
                 this.y = this.y - this.verticalPadding;
                 this.textAnchor = 'start';
             }
+            this.textAnchor = 'start';
             this.transform = "rotate(" + this.rotationAngle + ", " + this.x + " , " + this.y + ")";
         }
     };
