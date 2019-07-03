@@ -54,7 +54,7 @@ var BarLabelComponent = /** @class */ (function () {
             // orientation must be "vertical"
             if (dimension.width > this.barWidth) {
                 this.x = this.barX + this.barWidth / 2;
-                this.rotationAngle = -45;
+                this.rotationAngle = 0;
             }
             else {
                 this.x = this.barX + (this.barWidth - dimension.width) / 2;
