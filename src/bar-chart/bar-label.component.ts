@@ -92,13 +92,14 @@ import { formatLabel } from '../common/label.helper';
 
       } else {
         // orientation must be "vertical"
-        if (dimension.width > this.barWidth) {
+        /*if (dimension.width > this.barWidth) {
           this.x = this.barX + this.barWidth / 2;
           this.rotationAngle = 0;
         } else {
-          this.x = this.barX + (this.barWidth - dimension.width) / 2;
-          this.rotationAngle = 0;
-        }
+
+        }*/
+        this.x = this.barX + (this.barWidth - dimension.width) / 2;
+        this.rotationAngle = 0;
         this.y = this.barY + this.barHeight;
 
         if (this.value < 0) {

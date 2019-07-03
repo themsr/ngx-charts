@@ -9471,14 +9471,8 @@ var BarLabelComponent = /** @class */ (function () {
             this.y = this.barY + this.barHeight / 2;
         }
         else {
-            if (dimension.width > this.barWidth) {
-                this.x = this.barX + this.barWidth / 2;
-                this.rotationAngle = 0;
-            }
-            else {
-                this.x = this.barX + (this.barWidth - dimension.width) / 2;
-                this.rotationAngle = 0;
-            }
+            this.x = this.barX + (this.barWidth - dimension.width) / 2;
+            this.rotationAngle = 0;
             this.y = this.barY + this.barHeight;
             if (this.value < 0) {
                 this.y = this.y + this.verticalPadding;
