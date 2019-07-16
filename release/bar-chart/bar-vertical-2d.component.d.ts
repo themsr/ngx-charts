@@ -35,6 +35,7 @@ export declare class BarVertical2DComponent extends BaseChartComponent {
     showDataLabel: boolean;
     dataLabelFormatting: any;
     noBarWhenZero: boolean;
+    dataLabelRotationAngle: number;
     activate: EventEmitter<any>;
     deactivate: EventEmitter<any>;
     tooltipTemplate: TemplateRef<any>;

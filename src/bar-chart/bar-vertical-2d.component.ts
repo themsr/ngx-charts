@@ -82,6 +82,7 @@ import { BaseChartComponent } from '../common/base-chart.component';
           [tooltipTemplate]="tooltipTemplate"
           [showDataLabel]="showDataLabel"
           [dataLabelFormatting]="dataLabelFormatting"
+          [dataLabelRotationAngle]="dataLabelRotationAngle"
           [seriesName]="group.name"
           [roundEdges]="roundEdges"
           [animations]="animations"
@@ -142,6 +143,7 @@ export class BarVertical2DComponent extends BaseChartComponent {
   @Input() showDataLabel: boolean = false;
   @Input() dataLabelFormatting: any;
   @Input() noBarWhenZero: boolean = true;
+  @Input() dataLabelRotationAngle: number = 0;
 
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();
