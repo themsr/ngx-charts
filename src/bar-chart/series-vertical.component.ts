@@ -50,6 +50,7 @@ export enum D0Types {
         [barWidth]="b.width"
         [barHeight]="b.height"
         [value]="b.total"
+        [rotationAngle]="b.dataLabelRotationAngle"
         [valueFormatting]="dataLabelFormatting"
         [orientation]="'vertical'"
         (dimensionsChanged)="dataLabelHeightChanged.emit({ size: $event, index: i })"
@@ -83,6 +84,7 @@ export class SeriesVerticalComponent implements OnChanges {
   @Input() roundEdges: boolean;
   @Input() animations: boolean = true;
   @Input() showDataLabel: boolean = false;
+  @Input() dataLabelRotationAngle: number = 0;
   @Input() dataLabelFormatting: any;
   @Input() noBarWhenZero: boolean = true;
 
@@ -97,7 +99,7 @@ export class SeriesVerticalComponent implements OnChanges {
   bars: any;
   x: any;
   y: any;
-  barsForDataLabels: Array<{ x: number; y: number; width: number; height: number; total: number; series: string }> = [];
+  barsForDataLabels: Array<{ x: number; y: number; width: number; height: number; total: number; series: string; rotationAngle: number }> = [];
 
   ngOnChanges(changes): void {
     this.update();
@@ -231,6 +233,7 @@ export class SeriesVerticalComponent implements OnChanges {
         section.height = this.yScale(totalNegative);
       }
       section.width = this.xScale.bandwidth();
+      section.dataLabelRotationAngle = this.dataLabelRotationAngle;
       this.barsForDataLabels.push(section);
     } else {
       this.barsForDataLabels = this.series.map(d => {
@@ -241,6 +244,7 @@ export class SeriesVerticalComponent implements OnChanges {
         section.y = this.yScale(0);
         section.height = this.yScale(section.total) - this.yScale(0);
         section.width = this.xScale.bandwidth();
+        section.dataLabelRotationAngle = this.dataLabelRotationAngle;
         return section;
       });
     }

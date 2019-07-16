@@ -7,6 +7,7 @@ export declare class BarLabelComponent implements OnChanges {
     barWidth: any;
     barHeight: any;
     orientation: any;
+    rotationAngle: any;
     dimensionsChanged: EventEmitter<any>;
     element: any;
     x: number;
@@ -16,7 +17,6 @@ export declare class BarLabelComponent implements OnChanges {
     formatedValue: string;
     transform: string;
     textAnchor: string;
-    rotationAngle: number;
     constructor(element: ElementRef);
     ngOnChanges(changes: SimpleChanges): void;
     getSize(): any;

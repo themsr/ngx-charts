@@ -37,6 +37,7 @@ import { formatLabel } from '../common/label.helper';
     @Input() barWidth;
     @Input() barHeight;
     @Input() orientation;
+    @Input() rotationAngle;
 
     @Output() dimensionsChanged: EventEmitter<any> = new EventEmitter();
 
@@ -48,7 +49,7 @@ import { formatLabel } from '../common/label.helper';
     formatedValue: string;
     transform: string;
     textAnchor: string;
-    rotationAngle: number = 0;
+    // rotationAngle: number = 0;
 
     constructor(element: ElementRef) {
       this.element = element.nativeElement;
@@ -69,6 +70,8 @@ import { formatLabel } from '../common/label.helper';
     }
 
     update(): void {
+      this.rotationAngle = this.rotationAngle ? this.rotationAngle : 0;
+      // this.rotationAngle = this.rotationAngle ? this.rotationAngle : 0;
       if (this.valueFormatting) {
         this.formatedValue = this.valueFormatting(this.value);
       } else {
@@ -91,25 +94,20 @@ import { formatLabel } from '../common/label.helper';
           this.y = this.barY + this.barHeight / 2;
 
       } else {
-        // orientation must be "vertical"
-        /*if (dimension.width > this.barWidth) {
-          this.x = this.barX + this.barWidth / 2;
-          this.rotationAngle = 0;
+        if (this.rotationAngle === 0) {
+          this.x = this.barX + (this.barWidth - dimension.width) / 2;
         } else {
-
-        }*/
-        this.x = this.barX + (this.barWidth - dimension.width) / 2;
-        this.rotationAngle = 0;
+          this.x = this.barX + this.barWidth / 2;
+        }
         this.y = this.barY + this.barHeight;
-
+        this.textAnchor = 'start';
         if (this.value < 0) {
           this.y = this.y + this.verticalPadding;
-          // this.textAnchor = 'end';
+          this.textAnchor = this.rotationAngle ? 'end' : 'start';
         } else {
           this.y = this.y - this.verticalPadding;
-          this.textAnchor = 'start';
         }
-        this.textAnchor = 'start';
+
         this.transform = `rotate(${this.rotationAngle}, ${ this.x } , ${ this.y })`;
       }
 

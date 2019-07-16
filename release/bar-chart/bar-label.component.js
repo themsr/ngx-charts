@@ -10,11 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component, Input, ChangeDetectionStrategy, ElementRef, Output, EventEmitter } from '@angular/core';
 import { formatLabel } from '../common/label.helper';
 var BarLabelComponent = /** @class */ (function () {
+    // rotationAngle: number = 0;
     function BarLabelComponent(element) {
         this.dimensionsChanged = new EventEmitter();
         this.horizontalPadding = 2;
         this.verticalPadding = 7;
-        this.rotationAngle = 0;
         this.element = element.nativeElement;
     }
     BarLabelComponent.prototype.ngOnChanges = function (changes) {
@@ -29,6 +29,8 @@ var BarLabelComponent = /** @class */ (function () {
         this.dimensionsChanged.emit(this.getSize());
     };
     BarLabelComponent.prototype.update = function () {
+        this.rotationAngle = this.rotationAngle ? this.rotationAngle : 0;
+        // this.rotationAngle = this.rotationAngle ? this.rotationAngle : 0;
         if (this.valueFormatting) {
             this.formatedValue = this.valueFormatting(this.value);
         }
@@ -51,25 +53,21 @@ var BarLabelComponent = /** @class */ (function () {
             this.y = this.barY + this.barHeight / 2;
         }
         else {
-            // orientation must be "vertical"
-            /*if (dimension.width > this.barWidth) {
-              this.x = this.barX + this.barWidth / 2;
-              this.rotationAngle = 0;
-            } else {
-    
-            }*/
-            this.x = this.barX + (this.barWidth - dimension.width) / 2;
-            this.rotationAngle = 0;
+            if (this.rotationAngle === 0) {
+                this.x = this.barX + (this.barWidth - dimension.width) / 2;
+            }
+            else {
+                this.x = this.barX + this.barWidth / 2;
+            }
             this.y = this.barY + this.barHeight;
+            this.textAnchor = 'start';
             if (this.value < 0) {
                 this.y = this.y + this.verticalPadding;
-                // this.textAnchor = 'end';
+                this.textAnchor = this.rotationAngle ? 'end' : 'start';
             }
             else {
                 this.y = this.y - this.verticalPadding;
-                this.textAnchor = 'start';
             }
-            this.textAnchor = 'start';
             this.transform = "rotate(" + this.rotationAngle + ", " + this.x + " , " + this.y + ")";
         }
     };
@@ -101,6 +99,10 @@ var BarLabelComponent = /** @class */ (function () {
         Input(),
         __metadata("design:type", Object)
     ], BarLabelComponent.prototype, "orientation", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], BarLabelComponent.prototype, "rotationAngle", void 0);
     __decorate([
         Output(),
         __metadata("design:type", EventEmitter)

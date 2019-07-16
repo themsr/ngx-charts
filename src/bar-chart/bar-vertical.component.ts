@@ -69,6 +69,7 @@ import { DataItem } from '../models/chart-data.model';
           [tooltipDisabled]="tooltipDisabled"
           [tooltipTemplate]="tooltipTemplate"
           [showDataLabel]="showDataLabel"
+          [dataLabelRotationAngle]="dataLabelRotationAngle"
           [dataLabelFormatting]="dataLabelFormatting"
           [activeEntries]="activeEntries"
           [roundEdges]="roundEdges"
@@ -118,6 +119,7 @@ export class BarVerticalComponent extends BaseChartComponent {
   @Input() showDataLabel: boolean = false;
   @Input() dataLabelFormatting: any;
   @Input() noBarWhenZero: boolean = true;
+  @Input() dataLabelRotationAngle: number = 0;
 
   @Output() activate: EventEmitter<any> = new EventEmitter();
   @Output() deactivate: EventEmitter<any> = new EventEmitter();

@@ -19,6 +19,7 @@ export declare class SeriesVerticalComponent implements OnChanges {
     roundEdges: boolean;
     animations: boolean;
     showDataLabel: boolean;
+    dataLabelRotationAngle: number;
     dataLabelFormatting: any;
     noBarWhenZero: boolean;
     select: EventEmitter<{}>;
@@ -37,6 +38,7 @@ export declare class SeriesVerticalComponent implements OnChanges {
         height: number;
         total: number;
         series: string;
+        rotationAngle: number;
     }>;
     ngOnChanges(changes: any): void;
     update(): void;
